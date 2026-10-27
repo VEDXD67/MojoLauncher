@@ -30,7 +30,18 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+<ImageButton
+    android:id="@+id/orientation_button"
+    android:layout_width="@dimen/_40sdp"
+    android:layout_height="@dimen/_52sdp"
+    android:layout_marginEnd="@dimen/_52sdp"
+    android:background="?attr/selectableItemBackground"
+    android:src="@android:drawable/ic_menu_rotate"
+    android:contentDescription="Change screen orientation"
+    android:scaleType="fitCenter"
+    android:padding="@dimen/_10sdp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
     <!-- Holding most of the dynamic content -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_fragment"
