@@ -53,6 +53,7 @@ public class LauncherActivity extends BaseActivity {
 
     private FragmentContainerView mFragmentView;
     private ImageButton mSettingsButton;
+    private ImageButton mOrientationButton;
     private ProgressLayout mProgressLayout;
     private ProgressServiceKeeper mProgressServiceKeeper;
     private NotificationManager mNotificationManager;
