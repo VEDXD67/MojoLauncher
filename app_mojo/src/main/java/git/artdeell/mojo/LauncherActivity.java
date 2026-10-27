@@ -327,6 +327,7 @@ public class LauncherActivity extends BaseActivity {
     private void bindViews(){
         mFragmentView = findViewById(R.id.container_fragment);
         mSettingsButton = findViewById(R.id.setting_button);
+        mOrientationButton = findViewById(R.id.orientation_button);
         mProgressLayout = findViewById(R.id.progress_layout);
     }
 }
