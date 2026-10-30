@@ -48,20 +48,24 @@ public class MainMenuFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Button mNewsButton = view.findViewById(R.id.news_button);
-        Button mDiscordButton = view.findViewById(R.id.social_media_button);
-        Button mCustomControlButton = view.findViewById(R.id.custom_control_button);
-        Button mInstallJarButton = view.findViewById(R.id.install_jar_button);
-        Button mShareLogsButton = view.findViewById(R.id.share_logs_button);
-        Button mOpenDirectoryButton = view.findViewById(R.id.open_files_button);
-
+       Button mNewsButton = view.findViewById(R.id.news_button);
+Button mDiscordButton = view.findViewById(R.id.social_media_button);
+Button mInstagramButton = view.findViewById(R.id.instagram_button);
+Button mCustomControlButton = view.findViewById(R.id.custom_control_button);
+Button mInstallJarButton = view.findViewById(R.id.install_jar_button);
+Button mShareLogsButton = view.findViewById(R.id.share_logs_button);
+Button mOpenDirectoryButton = view.findViewById(R.id.open_files_button); 
         ImageButton mEditProfileButton = view.findViewById(R.id.edit_profile_button);
         Button mPlayButton = view.findViewById(R.id.play_button);
         mVersionSpinner = view.findViewById(R.id.mc_version_spinner);
+        mNewsButton.setOnClickListener(v -> Tools.openURL(requireActivity(), "https://youtube.com/@vedxd07?si=nxarpcvikR5Ldees"));
 
-        mNewsButton.setOnClickListener(v -> Tools.openURL(requireActivity(), Tools.URL_HOME));
-        mDiscordButton.setOnClickListener(v -> Tools.openURL(requireActivity(), getString(R.string.social_media_invite)));
-        mCustomControlButton.setOnClickListener(v -> startActivity(new Intent(requireContext(), CustomControlsActivity.class)));
+mDiscordButton.setOnClickListener(v -> Tools.openURL(requireActivity(), "https://youtube.com/@trickys_world?si=MEZMZyNC9hty24ih"));
+
+mInstagramButton.setOnClickListener(v -> Tools.openURL(requireActivity(), "https://instagram.com/trickys_world_82"));
+
+mCustomControlButton.setOnClickListener(v -> startActivity(new Intent(requireContext(), CustomControlsActivity.class)));
+        
         mInstallJarButton.setOnClickListener(v -> runInstallerWithConfirmation());
         mEditProfileButton.setOnClickListener(v -> mVersionSpinner.openProfileEditor(requireActivity()));
 
@@ -69,14 +73,8 @@ public class MainMenuFragment extends Fragment {
 
         mShareLogsButton.setOnClickListener((v) -> shareLog(requireContext()));
 
-        mOpenDirectoryButton.setOnClickListener((v)-> openGameDirectory(v.getContext()));
-
-
-        mNewsButton.setOnLongClickListener((v)->{
-            Tools.swapFragment(requireActivity(), GamepadMapperFragment.class, GamepadMapperFragment.TAG, null);
-            return true;
-        });
-    }
+        mOpenDirectoryButton.setOnClickListener((v)-> openGameDirectory(v.getContext())) ;:
+            
 
     private void openGameDirectory(Context context) {
         Instance instance = Instances.loadSelectedInstance();
