@@ -62,7 +62,9 @@ Button mOpenDirectoryButton = view.findViewById(R.id.open_files_button);
 
 mDiscordButton.setOnClickListener(v -> Tools.openURL(requireActivity(), "https://youtube.com/@trickys_world?si=MEZMZyNC9hty24ih"));
 
-mInstagramButton.setOnClickListener(v -> Tools.openURL(requireActivity(), "https://instagram.com/trickys_world_82"));
+if (mInstagramButton != null) {
+    mInstagramButton.setOnClickListener(v -> Tools.openURL(requireActivity(), "https://instagram.com/trickys_world_82"));
+}
 
 mCustomControlButton.setOnClickListener(v -> startActivity(new Intent(requireContext(), CustomControlsActivity.class)));
         
