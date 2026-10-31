@@ -73,8 +73,8 @@ mCustomControlButton.setOnClickListener(v -> startActivity(new Intent(requireCon
 
         mShareLogsButton.setOnClickListener((v) -> shareLog(requireContext()));
 
-        mOpenDirectoryButton.setOnClickListener((v)-> openGameDirectory(v.getContext())) ;:
-            
+        mOpenDirectoryButton.setOnClickListener(v -> openGameDirectory(v.getContext()));
+    } 
 
     private void openGameDirectory(Context context) {
         Instance instance = Instances.loadSelectedInstance();
