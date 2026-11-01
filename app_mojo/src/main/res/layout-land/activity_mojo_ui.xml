@@ -27,6 +27,18 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+  <ImageButton
+    android:id="@+id/orientation_button"
+    android:layout_width="@dimen/_40sdp"
+    android:layout_height="@dimen/_42sdp"
+    android:layout_marginEnd="@dimen/_52sdp"
+    android:background="?attr/selectableItemBackground"
+    android:src="@android:drawable/ic_menu_rotate"
+    android:contentDescription="Change screen orientation"
+    android:scaleType="fitCenter"
+    android:padding="@dimen/_8sdp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />  
 
 
 
@@ -40,7 +52,18 @@
         app:layout_constraintTop_toBottomOf="@+id/account_spinner" />
 
 
-    <com.kdt.mcgui.ProgressLayout
+    <com.kdt.mcgui.Progre<ImageButton
+    android:id="@+id/orientation_button"
+    android:layout_width="@dimen/_40sdp"
+    android:layout_height="@dimen/_42sdp"
+    android:layout_marginEnd="@dimen/_52sdp"
+    android:background="?attr/selectableItemBackground"
+    android:src="@android:drawable/ic_menu_rotate"
+    android:contentDescription="Change screen orientation"
+    android:scaleType="fitCenter"
+    android:padding="@dimen/_8sdp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />ssLayout
         android:id="@+id/progress_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
