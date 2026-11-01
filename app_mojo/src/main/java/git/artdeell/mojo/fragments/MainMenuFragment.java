@@ -51,6 +51,9 @@ public class MainMenuFragment extends Fragment {
        Button mNewsButton = view.findViewById(R.id.news_button);
 Button mDiscordButton = view.findViewById(R.id.social_media_button);
 Button mInstagramButton = view.findViewById(R.id.instagram_button);
+        ImageButton mModeratorInstagramButton = view.findViewById(R.id.moderator_instagram_button);
+        ImageButton mModeratorInstagramButton = view.findViewById(R.id.moderator_instagram_button);
+        ImageButton mModeratorInstagramButton = view.findViewById(R.id.moderator_instagram_button);
 Button mCustomControlButton = view.findViewById(R.id.custom_control_button);
 Button mInstallJarButton = view.findViewById(R.id.install_jar_button);
 Button mShareLogsButton = view.findViewById(R.id.share_logs_button);
@@ -65,7 +68,11 @@ mDiscordButton.setOnClickListener(v -> Tools.openURL(requireActivity(), "https:/
 if (mInstagramButton != null) {
     mInstagramButton.setOnClickListener(v -> Tools.openURL(requireActivity(), "https://instagram.com/trickys_world_82"));
 }
-
+if (mModeratorInstagramButton != null) {
+    mModeratorInstagramButton.setOnClickListener(v ->
+        Tools.openURL(requireActivity(), "https://www.instagram.com/nihal.exe2.0?utm_source=qr&obrf=MXYzbnphZmNlZWM4OA==")
+    );
+}
 mCustomControlButton.setOnClickListener(v -> startActivity(new Intent(requireContext(), CustomControlsActivity.class)));
         
         mInstallJarButton.setOnClickListener(v -> runInstallerWithConfirmation());
