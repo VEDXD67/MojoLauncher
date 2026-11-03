@@ -63,8 +63,6 @@ mModCenterButton.setOnClickListener(v ->
         .addToBackStack(null)
         .commit()
 );
-        Button mModCenterButton = view.findViewById(R.id.mod_center_button);
-
 mModCenterButton.setOnClickListener(v ->
     getParentFragmentManager()
         .beginTransaction()
