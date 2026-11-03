@@ -114,7 +114,6 @@
 </LinearLayout>			
 
 			<com.kdt.mcgui.LauncherMenuButton
-				<com.kdt.mcgui.LauncherMenuButton
     android:id="@+id/mod_center_button"
     style="@style/LauncherMenuButton.Universal"
     android:layout_width="match_parent"
