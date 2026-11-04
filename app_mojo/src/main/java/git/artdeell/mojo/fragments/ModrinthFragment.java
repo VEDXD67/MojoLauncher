@@ -628,6 +628,162 @@ public class ModrinthFragment extends Fragment {
             }
         }
     }
-}
 
- 
+    private String request(String url) throws Exception {
+        HttpURLConnection connection = null;
+
+        try {
+            connection = (HttpURLConnection)
+                    new URL(url).openConnection();
+
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(15000);
+            connection.setReadTimeout(20000);
+            connection.setRequestProperty(
+                    "User-Agent",
+                    "JarLauncher/1.0 (Android)"
+            );
+
+            if (connection.getResponseCode() != 200) {
+                throw new Exception(
+                        "Server error: " + connection.getResponseCode()
+                );
+            }
+
+            StringBuilder response = new StringBuilder();
+
+            try (BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(connection.getInputStream()))) {
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+            }
+
+            return response.toString();
+
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+    }
+
+    private void importFile(Uri uri) {
+        Context context = requireContext().getApplicationContext();
+        String selectedCategory = category;
+
+        executor.execute(() -> {
+            try {
+                String fileName = getFileName(context, uri);
+
+                if (fileName == null || fileName.isEmpty()) {
+                    throw new Exception("Cannot read file name.");
+                }
+
+                String folder;
+                String extension;
+
+                if ("mod".equals(selectedCategory)) {
+                    folder = "mods";
+                    extension = ".jar";
+                } else if ("shader".equals(selectedCategory)) {
+                    folder = "shaderpacks";
+                    extension = ".zip";
+                } else {
+                    folder = "resourcepacks";
+                    extension = ".zip";
+                }
+
+                if (!fileName.toLowerCase().endsWith(extension)) {
+                    throw new Exception("Wrong file type.");
+                }
+
+                Instance instance = Instances.loadSelectedInstance();
+
+                if (instance == null) {
+                    throw new Exception("No instance selected.");
+                }
+
+                File destinationFolder =
+                        new File(instance.getGameDirectory(), folder);
+
+                if (!destinationFolder.exists()
+                        && !destinationFolder.mkdirs()) {
+                    throw new Exception("Cannot create folder.");
+                }
+
+                File destination = new File(
+                        destinationFolder,
+                        new File(fileName).getName()
+                );
+
+                if (destination.exists()) {
+                    throw new Exception("File already exists.");
+                }
+
+                try (
+                        InputStream input =
+                                context.getContentResolver().openInputStream(uri);
+                        FileOutputStream output =
+                                new FileOutputStream(destination)
+                ) {
+                    if (input == null) {
+                        throw new Exception("Cannot open file.");
+                    }
+
+                    byte[] buffer = new byte[8192];
+                    int count;
+
+                    while ((count = input.read(buffer)) != -1) {
+                        output.write(buffer, 0, count);
+                    }
+                }
+
+                showToast("Imported: " + fileName);
+
+            } catch (Exception e) {
+                showToast("Import failed: " + e.getMessage());
+            }
+        });
+    }
+
+    private String getFileName(Context context, Uri uri) {
+        try (Cursor cursor = context.getContentResolver().query(
+                uri,
+                new String[]{OpenableColumns.DISPLAY_NAME},
+                null,
+                null,
+                null
+        )) {
+            if (cursor != null && cursor.moveToFirst()) {
+                return cursor.getString(0);
+            }
+        } catch (Exception ignored) {
+        }
+
+        return null;
+    }
+
+    private void showToast(String message) {
+        if (!isAdded()) return;
+
+        requireActivity().runOnUiThread(() -> {
+            if (isAdded()) {
+                Toast.makeText(
+                        requireContext(),
+                        message,
+                        Toast.LENGTH_LONG
+                ).show();
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        executor.shutdownNow();
+        super.onDestroy();
+    }
+    
+}
