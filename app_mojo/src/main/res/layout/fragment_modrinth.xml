@@ -66,15 +66,12 @@
                 android:text="Packs" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/mod_results"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose a category to discover content."
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:padding="32dp" />
+    <LinearLayout
+    android:id="@+id/mod_results"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp" />
 
     </LinearLayout>
 </ScrollView>
