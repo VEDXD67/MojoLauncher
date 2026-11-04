@@ -612,4 +612,22 @@ public class ModrinthFragment extends Fragment {
             try (
                     InputStream input = connection.getInputStream();
                     FileOutputStream output =
-                    
+                            new FileOutputStream(destination)
+            ) {
+                byte[] buffer = new byte[8192];
+                int count;
+
+                while ((count = input.read(buffer)) != -1) {
+                    output.write(buffer, 0, count);
+                }
+            }
+
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+    }
+}
+
+ 
