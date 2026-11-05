@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#181818"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JAR SKIN & CAPE"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
+
+        <ImageView
+            android:id="@+id/skin_preview"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_steve_face"
+            android:scaleType="fitCenter"
+            android:contentDescription="Skin preview"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Minecraft Character"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/change_skin_button"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="35dp"
+            android:text="CHANGE SKIN"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#287A43"/>
+
+        <Button
+            android:id="@+id/change_cape_button"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
+            android:text="CHANGE CAPE"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#287A43"/>
+
+        <Button
+            android:id="@+id/apply_skin_button"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="30dp"
+            android:text="APPLY CHANGES"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#145C30"/>
+
+    </LinearLayout>
+</ScrollView>
