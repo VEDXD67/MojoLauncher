@@ -1,0 +1,41 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Steve's hair -->
+    <path
+        android:fillColor="#503522"
+        android:pathData="M8,5 H40 V16 H36 V12 H12 V16 H8 Z"/>
+
+    <!-- Face -->
+    <path
+        android:fillColor="#D7A477"
+        android:pathData="M12,12 H36 V36 H32 V42 H16 V36 H12 Z"/>
+
+    <!-- Side hair -->
+    <path
+        android:fillColor="#503522"
+        android:pathData="M8,12 H14 V30 H10 V36 H8 Z M34,12 H40 V36 H36 V30 H34 Z"/>
+
+    <!-- Eyes -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M14,22 H22 V27 H14 Z M26,22 H34 V27 H26 Z"/>
+
+    <path
+        android:fillColor="#3976B8"
+        android:pathData="M17,22 H21 V27 H17 Z M27,22 H31 V27 H27 Z"/>
+
+    <!-- Nose -->
+    <path
+        android:fillColor="#B97955"
+        android:pathData="M22,27 H26 V32 H22 Z"/>
+
+    <!-- Beard and mouth -->
+    <path
+        android:fillColor="#68452F"
+        android:pathData="M14,33 H18 V36 H30 V33 H34 V40 H30 V42 H18 V40 H14 Z"/>
+
+</vector>
