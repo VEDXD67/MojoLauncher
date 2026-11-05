@@ -42,6 +42,17 @@
     android:padding="@dimen/_10sdp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+    android:id="@+id/skin_cape_button"
+    android:layout_width="@dimen/_40sdp"
+    android:layout_height="@dimen/_52sdp"
+    android:background="?attr/selectableItemBackground"
+    android:src="@drawable/ic_steve_face"
+    android:scaleType="fitCenter"
+    android:padding="@dimen/_6sdp"
+    android:contentDescription="Skin and Cape Manager"
+    app:layout_constraintEnd_toStartOf="@id/orientation_button"
+    app:layout_constraintTop_toTopOf="parent" />
     <!-- Holding most of the dynamic content -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_fragment"
