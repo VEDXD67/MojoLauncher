@@ -167,60 +167,119 @@ public class ModrinthFragment extends Fragment {
     }
 
     private void showProjects(
-            JSONArray projects,
-            String selectedCategory) {
+        JSONArray projects,
+        String selectedCategory) {
 
-        onUi(() -> {
-            resultsView.removeAllViews();
+    onUi(() -> {
+        resultsView.removeAllViews();
 
-            if (projects.length() == 0) {
-                showMessage("No results found.");
-                return;
-            }
+        if (projects.length() == 0) {
+            showMessage("No results found.");
+            return;
+        }
 
-            for (int i = 0; i < projects.length(); i++) {
-                JSONObject project = projects.optJSONObject(i);
-                if (project == null) continue;
+        for (int i = 0; i < projects.length(); i++) {
+            JSONObject project = projects.optJSONObject(i);
+            if (project == null) continue;
 
-                String title = project.optString("title");
-                String description =
-                        project.optString("description");
-                String downloads =
-                        String.valueOf(project.optLong("downloads"));
+            String title = project.optString("title");
+            String description = project.optString("description");
+            String downloads = String.valueOf(
+                    project.optLong("downloads"));
+            String iconUrl = project.optString("icon_url", "");
 
-                TextView item = new TextView(requireContext());
+            LinearLayout row = new LinearLayout(requireContext());
+            row.setOrientation(LinearLayout.HORIZONTAL);
+            row.setGravity(android.view.Gravity.CENTER_VERTICAL);
+            row.setPadding(12, 12, 12, 12);
 
-                item.setText(
-                        (i + 1) + ". " + title
-                        + "\n" + description
-                        + "\nDownloads: " + downloads
-                        + "\nTap to view compatible versions"
-                );
+            android.widget.ImageView image =
+                    new android.widget.ImageView(requireContext());
 
-                item.setTextColor(0xFFFFFFFF);
-                item.setTextSize(14);
-                item.setPadding(16, 18, 16, 18);
+            int imageSize = (int) (48 *
+                    getResources().getDisplayMetrics().density);
 
-                item.setOnClickListener(v ->
-                        chooseLoader(project, selectedCategory)
-                );
+            LinearLayout.LayoutParams imageParams =
+                    new LinearLayout.LayoutParams(imageSize, imageSize);
 
-                resultsView.addView(item);
+            imageParams.setMargins(0, 0, 16, 0);
+            image.setLayoutParams(imageParams);
+            image.setScaleType(
+                    android.widget.ImageView.ScaleType.CENTER_CROP);
+            image.setBackgroundColor(0xFF303030);
 
-                View divider = new View(requireContext());
-                divider.setBackgroundColor(0xFF444444);
+            row.addView(image);
 
-                LinearLayout.LayoutParams params =
-                        new LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.MATCH_PARENT,
-                                1
+            TextView item = new TextView(requireContext());
+
+            item.setText(
+                    (i + 1) + ". " + title
+                    + "\n" + description
+                    + "\nDownloads: " + downloads
+                    + "\nTap to view compatible versions"
+            );
+
+            item.setTextColor(0xFFFFFFFF);
+            item.setTextSize(14);
+
+            row.addView(item, new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    1
+            ));
+
+            row.setOnClickListener(v ->
+                    chooseLoader(project, selectedCategory));
+
+            resultsView.addView(row);
+
+            if (!iconUrl.isEmpty()) {
+                new Thread(() -> {
+                    try {
+                        java.net.HttpURLConnection connection =
+                                (java.net.HttpURLConnection)
+                                new java.net.URL(iconUrl).openConnection();
+
+                        connection.setConnectTimeout(10000);
+                        connection.setReadTimeout(10000);
+
+                        android.graphics.Bitmap bitmap;
+
+                        try (java.io.InputStream stream =
+                                connection.getInputStream()) {
+                            bitmap =
+                                    android.graphics.BitmapFactory
+                                    .decodeStream(stream);
+                        }
+
+                        connection.disconnect();
+
+                        if (bitmap != null) {
+                            image.post(() ->
+                                    image.setImageBitmap(bitmap));
+                        }
+
+                    } catch (Exception e) {
+                        android.util.Log.e(
+                                "JarLauncher",
+                                "Could not load project icon",
+                                e
                         );
-
-                resultsView.addView(divider, params);
+                    }
+                }).start();
             }
-        });
-    }
 
+            View divider = new View(requireContext());
+            divider.setBackgroundColor(0xFF444444);
+
+            resultsView.addView(divider,
+                    new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            1
+                    ));
+        }
+    });
+    }
     private void chooseLoader(
             JSONObject project,
             String selectedCategory) {
