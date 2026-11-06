@@ -571,4 +571,17 @@
 <string name="performance_profile_balanced">Balanced</string>
 <string name="performance_profile_high">Performance</string>
 <string name="performance_profile_auto">Automatic</string>
+    <string-array name="performance_profile_entries">
+    <item>@string/performance_profile_auto</item>
+    <item>@string/performance_profile_low</item>
+    <item>@string/performance_profile_balanced</item>
+    <item>@string/performance_profile_high</item>
+</string-array>
+
+<string-array name="performance_profile_values">
+    <item>automatic</item>
+    <item>low</item>
+    <item>balanced</item>
+    <item>performance</item>
+</string-array>
 </resources>
