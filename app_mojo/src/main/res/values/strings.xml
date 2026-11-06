@@ -565,4 +565,10 @@
     <string name="pref_clean_partfiles_subtitle_wait">Clear partially downloaded game files. Calculating used space…</string>
     <string name="pref_clean_partfiles_subtitle">Clear partially downloaded game files. %.2f MB of space in use</string>
     <string name="clean_partfiles_wait">Clearing download cache…</string>
+    <string name="performance_profile_title">Performance Profile</string>
+<string name="performance_profile_summary">Choose how Jar Launcher balances performance and graphics.</string>
+<string name="performance_profile_low">Low-End</string>
+<string name="performance_profile_balanced">Balanced</string>
+<string name="performance_profile_high">Performance</string>
+<string name="performance_profile_auto">Automatic</string>
 </resources>
