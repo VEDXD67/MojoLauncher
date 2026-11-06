@@ -29,6 +29,7 @@ public class LauncherPreferences {
 
     public static SharedPreferences DEFAULT_PREF;
     public static String PREF_RENDERER = "opengles2";
+	public static String PREF_PERFORMANCE_PROFILE = "automatic";
 
 	public static boolean PREF_IGNORE_NOTCH = false;
 	public static float PREF_BUTTONSIZE = 100f;
@@ -87,6 +88,7 @@ public class LauncherPreferences {
         boolean isDevicePowerful = isDevicePowerful(ctx);
 
         PREF_RENDERER = DEFAULT_PREF.getString("renderer", "opengles2");
+		PREF_PERFORMANCE_PROFILE = DEFAULT_PREF.getString("performance_profile", "automatic");
         PREF_BUTTONSIZE = DEFAULT_PREF.getInt("buttonscale", 100);
         PREF_MOUSESCALE = DEFAULT_PREF.getInt("mousescale", 100)/100f;
         PREF_MOUSESPEED = ((float)DEFAULT_PREF.getInt("mousespeed",100))/100f;
