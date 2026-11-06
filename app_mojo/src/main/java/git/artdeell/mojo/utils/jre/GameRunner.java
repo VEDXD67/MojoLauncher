@@ -222,7 +222,7 @@ public class GameRunner {
             }
         }
 
-        GameOptionsUtils.fixOptions(isLtw);
+        GameOptionsUtils.fixOptions(isLtw, activity);
 
         if(isLtw && GpuUtils.getGlInfo().forcedMsaa) {
             if(showDialog(activity, R.string.ltw_4x_msaa_warning_msg)) return;
