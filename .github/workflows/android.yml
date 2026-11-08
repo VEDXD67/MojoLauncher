@@ -54,12 +54,13 @@ jobs:
           java-version: '17'
       - name: Create out directory
         run: mkdir out  
-      - name: Prepare Jar Launcher signing key
+           - name: Prepare Jar Launcher signing key
         env:
           KEY_BASE64: ${{ secrets.JAR_UPLOAD_KEYSTORE_BASE64 }}
         run: |
-          test -n "$KEY_BASE64"
-          printf '%s' "$KEY_BASE64" | base64 --decode > app_mojo/jar-launcher-upload.jks
+          echo "$KEY_BASE64" | base64 --decode > app_mojo/jar-launcher-upload.jks
+          ls -l app_mojo/jar-launcher-upload.jks
+          file app_mojo/jar-launcher-upload.jks
 
       - name: Verify Jar Launcher signing key
         env:
