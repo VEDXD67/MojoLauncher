@@ -5,12 +5,12 @@
     <git.artdeell.mojo.prefs.BackButtonPreference />
  <ListPreference
     android:key="performance_profile"
-    android:title="Performance Profile"
-    android:summary="Choose your Minecraft performance profile"
+    android:title="@string/performance_profile_title"
+    android:summary="@string/performance_profile_summary"
     android:defaultValue="automatic"
     android:entries="@array/performance_profile_entries"
-    android:entryValues="@array/performance_profile_values" />   
-
+    android:entryValues="@array/performance_profile_values" />
+    
     <PreferenceCategory android:title="@string/preference_category_video" >
         <androidx.preference.ListPreference
             android:title="@string/mcl_setting_category_renderer"
