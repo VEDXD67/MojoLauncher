@@ -60,7 +60,8 @@ jobs:
         run: |
           test -n "$KEY_BASE64"
           printf '%s' "$KEY_BASE64" | base64 --decode > app_mojo/jar-launcher-upload.jks
-                - name: Verify Jar Launcher signing key
+
+      - name: Verify Jar Launcher signing key
         env:
           KEYSTORE_PASSWORD: ${{ secrets.JAR_UPLOAD_KEYSTORE_PASSWORD }}
         run: |
