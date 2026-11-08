@@ -13,6 +13,7 @@ jobs:
       UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.UPLOAD_NEXT_KEYSTORE_PASSWORD }}
       MOJOPUB_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_NEXT_KEYSTORE_PASSWORD }}
       CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
+      JAR_UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.JAR_UPLOAD_KEYSTORE_PASSWORD }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
