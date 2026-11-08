@@ -53,8 +53,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Create out directory
-        run: mkdir out  
-           - name: Prepare Jar Launcher signing key
+        run: mkdir out
+
+      - name: Prepare Jar Launcher signing key
         env:
           KEY_BASE64: ${{ secrets.JAR_UPLOAD_KEYSTORE_BASE64 }}
         run: |
@@ -67,7 +68,6 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.JAR_UPLOAD_KEYSTORE_PASSWORD }}
         run: |
           keytool -list -keystore app_mojo/jar-launcher-upload.jks -storepass "$KEYSTORE_PASSWORD" -alias jarlauncher
-          keytool -certreq -alias jarlauncher -keystore app_mojo/jar-launcher-upload.jks -storepass "$KEYSTORE_PASSWORD" -keypass "$KEYSTORE_PASSWORD" -file /tmp/jarlauncher-test.csr
 
       - name: Build Publishing .aab
         if: github.ref_name == 'v3_openjdk'
@@ -81,7 +81,6 @@ jobs:
         with:
           name: jar-launcher-aab
           path: out/app-gplay.aab
-
       - name: Build Debug .apk
         run: |
           # Build the launcher
