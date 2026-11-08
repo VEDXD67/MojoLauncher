@@ -78,7 +78,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "git.artdeell.mjlaunch"
+        applicationId "com.vedxd67.jarlauncher"
         minSdkVersion 21
         targetSdkVersion 36
         versionCode getDateSeconds()
