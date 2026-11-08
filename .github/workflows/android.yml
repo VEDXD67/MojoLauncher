@@ -60,6 +60,12 @@ jobs:
         run: |
           test -n "$KEY_BASE64"
           printf '%s' "$KEY_BASE64" | base64 --decode > app_mojo/jar-launcher-upload.jks
+                - name: Verify Jar Launcher signing key
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.JAR_UPLOAD_KEYSTORE_PASSWORD }}
+        run: |
+          keytool -list -keystore app_mojo/jar-launcher-upload.jks -storepass "$KEYSTORE_PASSWORD" -alias jarlauncher
+          keytool -certreq -alias jarlauncher -keystore app_mojo/jar-launcher-upload.jks -storepass "$KEYSTORE_PASSWORD" -keypass "$KEYSTORE_PASSWORD" -file /tmp/jarlauncher-test.csr
 
       - name: Build Publishing .aab
         if: github.ref_name == 'v3_openjdk'
