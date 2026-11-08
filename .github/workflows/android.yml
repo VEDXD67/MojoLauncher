@@ -52,10 +52,13 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Create out directory
-        run: mkdir out
-      - name: Build Publishing .aab
-        if: github.repository_owner == 'MojoLauncher' && github.ref_name == 'v3_openjdk'
+        run: mkdir out    - name: Prepare Jar Launcher signing key
+        env:
+          KEY_BASE64: ${{ secrets.JAR_UPLOAD_KEYSTORE_BASE64 }}
         run: |
+          test -n "$KEY_BASE64"
+          printf '%s' "$KEY_BASE64" | base64 --decode > app_mojo/jar-launcher-upload.jks
+      - name: Build Publishing .aab   if: github.ref_name == 'v3_openjdk'
           gradle :app_mojo:bundleFullGplay
           mv app_mojo/build/outputs/bundle/fullGplay/app_mojo-full-gplay.aab out/app-gplay.aab
 
