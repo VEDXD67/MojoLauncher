@@ -59,9 +59,16 @@ jobs:
         run: |
           test -n "$KEY_BASE64"
           printf '%s' "$KEY_BASE64" | base64 --decode > app_mojo/jar-launcher-upload.jks
-      - name: Build Publishing .aab   if: github.ref_name == 'v3_openjdk'
+      - name: Build Publishing .aab 
+          if: github.ref_name == 'v3_openjdk'
           gradle :app_mojo:bundleFullGplay
           mv app_mojo/build/outputs/bundle/fullGplay/app_mojo-full-gplay.aab out/app-gplay.aab
+                - name: Upload Jar Launcher AAB
+        if: github.ref_name == 'v3_openjdk'
+        uses: actions/upload-artifact@v4
+        with:
+          name: jar-launcher-aab
+          path: out/app-gplay.aab
 
       - name: Build Debug .apk
         run: |
